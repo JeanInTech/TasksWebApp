@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "CreateTask";
+}
+
+<h1>CreateTask</h1>
+
+<form asp-controller="TaskList" asp-action="CreateTask">
+    <input type="text" name="TaskDescription" />
+    <input type="datetime-local" name="DueDate" />
+    <input type="submit" value="Add Task" />
+</form>

@@ -1,0 +1,24 @@
+﻿@model List<ToDo>
+
+
+
+
+<input type="search" id="SearchByDescription" onkeyup="myFunction()" placeholder="Search by Task Description" />
+<table class="table table-bordered table-striped table-dark table-hover" id="TaskTable">
+    <tr>
+        <th>Task</th>
+        <th>Completed?</th>
+        <th>Due Date</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (ToDo td in Model)
+    {
+        <tr>
+            <td>@td.Name</td>
+            <td>@td.Completed</td>
+            <td>@td.DueDate</td>
+            <td>@td.Description</td>
+        </tr>
+    }
+</table>
