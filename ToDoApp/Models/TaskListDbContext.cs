@@ -142,6 +142,13 @@ namespace ToDoApp.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(30);
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.ToDo)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__ToDo__UserId__6FE99F9F");
             });
 
             OnModelCreatingPartial(modelBuilder);

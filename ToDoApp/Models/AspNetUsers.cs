@@ -11,6 +11,7 @@ namespace ToDoApp.Models
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
+            ToDo = new HashSet<ToDo>();
         }
 
         public string Id { get; set; }
@@ -33,5 +34,6 @@ namespace ToDoApp.Models
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual ICollection<ToDo> ToDo { get; set; }
     }
 }

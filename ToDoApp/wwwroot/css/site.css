@@ -70,12 +70,20 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+/* table styles
+-------------------------------------------------- */
+
 #SearchByDescription {
-    background-image: url(../search-icon.png);
+    background-image: url(/img/search-icon.png);
     background-position: 10px 12px;
     background-repeat: no-repeat;
     width: 100%;
-    padding: 12px 20px 12px 40px;
+    padding: 10px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
+}
+
+.NewClass{
+    font-size: 1.15 em;
+    text-decoration: none;
 }

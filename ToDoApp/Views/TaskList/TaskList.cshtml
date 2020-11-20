@@ -1,24 +1,36 @@
 ﻿@model List<ToDo>
 
-
-
-
 <input type="search" id="SearchByDescription" onkeyup="myFunction()" placeholder="Search by Task Description" />
 <table class="table table-bordered table-striped table-dark table-hover" id="TaskTable">
     <tr>
+        <th>User</th>
         <th>Task</th>
-        <th>Completed?</th>
-        <th>Due Date</th>
+        <th>Status</th>
+        <th class="th-sm">Due Date</th>
         <th>Description</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
 
     @foreach (ToDo td in Model)
     {
         <tr>
+            <td>@td.UserId</td>
             <td>@td.Name</td>
-            <td>@td.Completed</td>
-            <td>@td.DueDate</td>
+            @if (!td.Completed)
+            {
+                <td>Incomplete</td>
+            }
+            else
+            {
+                <td>Completed</td>
+            }
+            <td>@td.DueDate.ToShortDateString()</td>
             <td>@td.Description</td>
+            <td><a asp-action="UpdateTask" asp-route-id="@td.Id"><img src="/img/edit-icon.png" /></a></td>
+            <td><a asp-action="DeleteTask" asp-route-id="@td.Id"><img src="~/img/delete-icon.png" /></a></td>
         </tr>
     }
 </table>
+
+<h6 class="NewTask"><a href="CreateTask"><img src="/img/plus-icon.png" /> Create New Task</a></h6>

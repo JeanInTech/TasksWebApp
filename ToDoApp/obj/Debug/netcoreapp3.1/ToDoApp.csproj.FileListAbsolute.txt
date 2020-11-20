@@ -164,3 +164,5 @@ C:\Users\jenif\source\repos\ToDoApp\ToDoApp\bin\Debug\netcoreapp3.1\zh-Hans\Micr
 C:\Users\jenif\source\repos\ToDoApp\ToDoApp\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\jenif\source\repos\ToDoApp\ToDoApp\obj\Debug\netcoreapp3.1\Razor\Views\TaskList\CreateTask.cshtml.g.cs
 C:\Users\jenif\source\repos\ToDoApp\ToDoApp\obj\Debug\netcoreapp3.1\Razor\Views\TaskList\TaskList.cshtml.g.cs
+C:\Users\jenif\source\repos\ToDoApp\ToDoApp\obj\Debug\netcoreapp3.1\Razor\Views\TaskList\UpdateTask.cshtml.g.cs
+C:\Users\jenif\source\repos\ToDoApp\ToDoApp\obj\Debug\netcoreapp3.1\Razor\Views\TaskList\DeleteTask.cshtml.g.cs

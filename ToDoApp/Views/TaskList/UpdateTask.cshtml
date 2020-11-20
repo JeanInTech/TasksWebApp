@@ -1,0 +1,15 @@
+﻿@model ToDo
+
+<h1>Update Task</h1>
+
+<form asp-controller="TaskList" asp-action="UpdateTask" method="post">
+    <input hidden name="Id" value="@Model.Id" />
+    <input type="text" name="Name" value="@Model.Name" required/>
+    <input type="text" name="Description" value="@Model.Description" required/>
+    <input type="date" name="DueDate" value="@Model.DueDate.Year-@Model.DueDate.Month-@Model.DueDate.Day" required/>
+    <select name="Completed">
+        <option value="True">Completed</option>
+        <option value="False">Incomplete</option>
+    </select>
+    <input type="submit" value="Update" />
+</form>
