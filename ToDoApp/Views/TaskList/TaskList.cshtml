@@ -1,4 +1,8 @@
 ﻿@model List<ToDo>
+@{
+    string userMatch = (string)TempData["User"];
+}
+<h5><a style="text-decoration:none" href="CreateTask"><img src="/img/plus-icon.png" /> Create New Task</a></h5>
 
 <input type="search" id="SearchByDescription" onkeyup="myFunction()" placeholder="Search by Task Description" />
 <table class="table table-bordered table-striped table-dark table-hover" id="TaskTable">
@@ -10,12 +14,13 @@
         <th>Description</th>
         <th>Update</th>
         <th>Delete</th>
+        <th>Mark As Completed</th>
     </tr>
 
     @foreach (ToDo td in Model)
     {
         <tr>
-            <td>@td.UserId</td>
+            <td>@td.UserEmail</td>
             <td>@td.Name</td>
             @if (!td.Completed)
             {
@@ -27,10 +32,37 @@
             }
             <td>@td.DueDate.ToShortDateString()</td>
             <td>@td.Description</td>
-            <td><a asp-action="UpdateTask" asp-route-id="@td.Id"><img src="/img/edit-icon.png" /></a></td>
-            <td><a asp-action="DeleteTask" asp-route-id="@td.Id"><img src="~/img/delete-icon.png" /></a></td>
+            <td>
+                @if (userMatch == td.UserId)
+                {
+                    <a asp-action="UpdateTask" asp-route-id="@td.Id"><img src="/img/edit-icon.png" /></a>
+                }
+                else
+                {
+                    //if user isn't a match, they cannot alter tasks
+                }
+            </td>
+            <td>
+                @if (userMatch == td.UserId)
+                {
+                    <a asp-action="DeleteTask" asp-route-id="@td.Id"><img src="~/img/delete-icon.png" /></a>
+                }
+                else
+                {
+                    //if user isn't a match, they cannot alter tasks
+                }
+            </td>
+            <td>
+                @if (userMatch == td.UserId)
+                {
+                    <a asp-action="MarkAsCompleted" asp-route-id="@td.Id"><img src="~/img/checkmark-icon.png" /></a>
+                }
+                else
+                {
+                    //if user isn't a match, they cannot alter tasks
+                }
+
+            </td>
         </tr>
     }
 </table>
-
-<h6 class="NewTask"><a href="CreateTask"><img src="/img/plus-icon.png" /> Create New Task</a></h6>

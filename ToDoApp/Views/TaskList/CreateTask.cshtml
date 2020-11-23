@@ -2,13 +2,15 @@
 @{
     ViewData["Title"] = "CreateTask";
 }
-
+@{
+    string user = User.Identity.Name;
+}
 <h1>Create Task</h1>
 
 <form asp-controller="TaskList" asp-action="CreateTask" method="post">
-    <input type="hidden" name="UserId" value="" />
+    <input type="hidden" name="UserEmail" value="@user" />
     <input type="text" name="Name" placeholder="Task Name" />
-    <input type="text" name="Description" placeholder="Task Description"/>
+    <input type="text" name="Description" placeholder="Task Description" />
     <input type="date" name="DueDate" />
     <input hidden name="Completed" value="False" />
     <input type="submit" value="Add Task" />

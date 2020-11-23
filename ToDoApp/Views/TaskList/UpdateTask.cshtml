@@ -4,12 +4,14 @@
 
 <form asp-controller="TaskList" asp-action="UpdateTask" method="post">
     <input hidden name="Id" value="@Model.Id" />
+    <input hidden name="UserEmail" value="@Model.UserEmail" />
     <input type="text" name="Name" value="@Model.Name" required/>
     <input type="text" name="Description" value="@Model.Description" required/>
     <input type="date" name="DueDate" value="@Model.DueDate.Year-@Model.DueDate.Month-@Model.DueDate.Day" required/>
+    <input hidden name="UserId" value="@Model.UserId" />
     <select name="Completed">
-        <option value="True">Completed</option>
         <option value="False">Incomplete</option>
+        <option value="True">Completed</option>
     </select>
     <input type="submit" value="Update" />
 </form>

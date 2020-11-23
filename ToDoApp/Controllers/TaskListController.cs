@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,12 +9,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ToDoApp.Models;
 
+
 namespace ToDoApp.Controllers
 {
     [Authorize]
     public class TaskListController : Controller
-    {
-        //userManager.GetUserName(HttpContext.User)
+    { 
         private readonly TaskListDbContext _db;
         public TaskListController(TaskListDbContext db)
         {
@@ -20,8 +22,9 @@ namespace ToDoApp.Controllers
         }
         public IActionResult TaskList()
         {
+            string userId = FindUser();
+            TempData["User"] = userId;
             List<ToDo> TaskList = _db.ToDo.ToList();
-            AspNetUsers c = userManager.GetUserName(HttpContext.User);
             return View(TaskList);
         }
         public IActionResult CreateTask()
@@ -33,6 +36,8 @@ namespace ToDoApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userId = FindUser();
+                td.UserId = userId;
                 _db.ToDo.Add(td);
                 _db.SaveChanges();
             }
@@ -66,6 +71,23 @@ namespace ToDoApp.Controllers
             _db.ToDo.Remove(td);
             _db.SaveChanges();
             return RedirectToAction("TaskList");
+        }
+        public IActionResult MarkAsCompleted(int Id)
+        {
+            ToDo td = _db.ToDo.Find(Id);
+            td.Completed = true;
+            _db.Update(td);
+            _db.SaveChanges();
+            return RedirectToAction("TaskList");
+        }
+
+        public string FindUser()
+        {
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            return userId;
         }
     }
 }
